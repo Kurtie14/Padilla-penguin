@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Parts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 36px;
+            color: #D69B42;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 200px;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-menu li {
+            text-align: left;
+        }
+        .dropdown-menu li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            padding: 10px;
+            color: #222;
+            display: block;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white; /* Change to white */
+            margin: 4px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .burger {
+                display: flex;
+            }
+            .search-container {
+                margin: 10px 0;
+            }
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #D69B42;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button:hover {
+            background-color: #b5832d;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            margin-top: auto;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .footer-section h3 {
+            color: #D69B42;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        .footer-section p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-section i {
+            color: #D69B42;
+            width: 20px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: white;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #D69B42;
+        }
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-section p {
+                justify-content: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
+            <span class="logo-text">Auto Parts</span>
+        </div>
+        <nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="burger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
+                        <li><a href="towingservices.html">Towing Services</a></li>
+                        <li><a href="truckingservices.html">Trucking Services</a></li>
+                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Sales ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                        <li><a href="autoparts.html">Auto Parts</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h1 style="color: #222; margin-bottom: 15px;">Auto Parts</h1>
+        <p style="color: #666; max-width: 800px; margin: 0 auto 30px; line-height: 1.6;">Discover our comprehensive selection of high-quality auto parts. From essential engine components to advanced electrical systems, we offer reliable parts that meet or exceed OEM specifications. Our inventory includes everything you need to keep your vehicle running at peak performance.</p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837" alt="Engine Parts" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
+                <h2 style="color: #D69B42; margin-bottom: 15px;">Engine Parts</h2>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 10px 0;">• Pistons and Rings</li>
+                    <li style="margin: 10px 0;">• Cylinder Heads</li>
+                    <li style="margin: 10px 0;">• Crankshafts</li>
+                    <li style="margin: 10px 0;">• Camshafts</li>
+                    <li style="margin: 10px 0;">• Timing Belts</li>
+                </ul>
+            </div>
+
+            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Brake System" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
+                <h2 style="color: #D69B42; margin-bottom: 15px;">Brake System</h2>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 10px 0;">• Brake Pads</li>
+                    <li style="margin: 10px 0;">• Rotors</li>
+                    <li style="margin: 10px 0;">• Calipers</li>
+                    <li style="margin: 10px 0;">• Brake Lines</li>
+                    <li style="margin: 10px 0;">• Master Cylinders</li>
+                </ul>
+            </div>
+
+            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
+                <img src="https://images.unsplash.com/photo-1519752594763-2633d8d4ea29?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Suspension" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
+                <h2 style="color: #D69B42; margin-bottom: 15px;">Suspension</h2>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 10px 0;">• Shock Absorbers</li>
+                    <li style="margin: 10px 0;">• Struts</li>
+                    <li style="margin: 10px 0;">• Control Arms</li>
+                    <li style="margin: 10px 0;">• Ball Joints</li>
+                    <li style="margin: 10px 0;">• Bushings</li>
+                </ul>
+            </div>
+
+            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
+                <img src="https://images.unsplash.com/photo-1606577924006-27d39b132ae2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Electrical" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
+                <h2 style="color: #D69B42; margin-bottom: 15px;">Electrical</h2>
+                <ul style="list-style: none; padding: 0; text-align: left;">
+                    <li style="margin: 10px 0;">• Alternators</li>
+                    <li style="margin: 10px 0;">• Starters</li>
+                    <li style="margin: 10px 0;">• Batteries</li>
+                    <li style="margin: 10px 0;">• Ignition Coils</li>
+                    <li style="margin: 10px 0;">• Sensors</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <p style="color: #666; margin-bottom: 20px;">Need specific auto parts? Contact us for availability and pricing.</p>
+            <button style="background-color: #D69B42; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">
+                Contact Sales
+            </button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Auto Parts Street, Manila, Philippines</p>
+                <p><i class="fas fa-phone"></i> +63 123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> info@penguinasia.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Business Hours</h3>
+                <p><i class="far fa-clock"></i> Monday - Friday: 8:00 AM - 6:00 PM</p>
+                <p><i class="far fa-clock"></i> Saturday: 9:00 AM - 4:00 PM</p>
+                <p><i class="far fa-clock"></i> Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

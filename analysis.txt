@@ -1,0 +1,63 @@
+ACTIVITY: Website Design Analysis Task #1
+Name: Padilla, Kurt Aeriole B.					Date: March 21, 2025
+
+Instructions: Review the website: Spend 10-15 minutes browsing the website. Explore different sections and functionalities.
+Identify potential improvements: List any areas where the website could be improved in terms of:
+
+Answer: I’ll brief the positives and negatives about the website.
+Usability:
+Positives:
+•	When I explored the website, the menu was clear and easy to use. Everything was labeled well, so I quickly found the services I was looking for.
+•	The search function made it easy to find specific content.
+•	Contact details were clearly visible for quick access.
+Negatives:
+•	The navigation menu feels unorganized since all services are listed in one place. Adding dropdowns or categories could make it easier for users to browse.
+•	Also there are no clear action buttons that calls out to users like “Book Now” or “Avail us!” which makes it difficult for users to take the next step.
+•	Some service pages don’t have enough details, which might leave users unsure about what’s being offered or why they should choose this company.
+
+
+
+
+
+
+
+Design: 
+Positives:
+•	The clean, minimalist design keeps things simple and free of clutter, making navigation easy.
+•	And typography is easy to read, with consistent font choices across all pages.
+Negatives:
+•	Few high-quality images leave pages feeling text-heavy and less engaging. Adding relevant visuals could improve the overall look.
+•	The outdated layout lacks modern design elements, with too much empty space making the site look plain rather than visually appealing also it is advisable to use grids for displaying the images so that multiple images can be shown in a single page.
+•	Important details like services and contact information don’t stand out due to poor spacing and layout. A better structure could improve visibility.
+
+Content:
+Positives:
+•	The content is clear and free from unnecessary jargon, making it easy to understand.
+•	Multiple services are covered, showcasing the company’s broad expertise.
+Negatives:
+•	No appalling copy differentiates the company from competitors, making it unclear why customers should choose them in simpler terms it is not unique enough.
+•	The absence of reviews or feedbacks from previous customers makes it harder to build credibility and trust.
+•	A blog or knowledge base is missing, losing an opportunity to provide valuable insights and improve SEO.
+
+
+
+
+
+SEO (Search Engine Optimization):
+Positives:
+•	The content is clear and free from unnecessary jargon, making it easy to understand.
+•	A wide range of services is covered, highlighting the company’s expertise.
+Negatives:
+•	The website lacks persuasive copy, making it unclear why customers should choose this company over competitors.
+•	No testimonials, reviews, or case studies are present, missing an opportunity to build credibility and trust.
+•	A blog or knowledge base is absent, losing a chance to provide useful insights and improve SEO.
+
+Other issues: 
+Positives:
+•	The website loads relatively fast, which improves user experience.
+•	A "Contact Us" page is present, which is essential for customer inquiries.
+Negatives:
+•	No Secure HTTPS Connection: The website does not use HTTPS, which is a major security issue. Websites without HTTPS are flagged as "Not Secure" by browsers, which can deter potential customers.
+•	Lack of Interactive Elements: The website feels static, with no interactive features such as contact forms, live chat, or pricing calculators. Adding these would enhance user engagement and website traffic.
+•	No Social Media Integration: The site does not link to any social media platforms, missing an opportunity to connect with customers on multiple channels.
+

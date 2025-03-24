@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trucking Services</title>
+    <style>
+        body {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 36px;
+            color: #D69B42;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 200px;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-menu li {
+            text-align: left;
+        }
+        .dropdown-menu li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            padding: 10px;
+            color: #222;
+            display: block;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white; 
+            margin: 4px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .burger {
+                display: flex;
+            }
+            .search-container {
+                margin: 10px 0;
+            }
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #D69B42;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button:hover {
+            background-color: #b5832d;
+        }
+        .trucking-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            text-align: left;
+        }
+        .trucking-container h2 {
+            color: #D69B42;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .trucking-container p {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: calc(50% - 10px);
+            text-align: left;
+            height: 400px; 
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; 
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-content h3 {
+            color: #D69B42;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .card-content p {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 15% auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
+            <span class="logo-text">Trucking Services</span>
+        </div>
+        <nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="burger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
+                        <li><a href="towingservices.html">Towing Services</a></li>
+                        <li><a href="truckingservices.html">Trucking Services</a></li>
+                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Sales ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                        <li><a href="autoparts.html">Auto Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="trucking-container">
+        <h2>Trucking Services</h2>
+        <p>Contact us for proper quotation at (0923) 086 8342</p>
+        <p>We offer different trucking services.</p>
+    </div>
+    <div class="cards-container">
+        <div class="card">
+            <img src="trucking/image1.png" alt="Service 1" onclick="openModal(this)">
+            <div class="card-content">
+                <h3>Service 1</h3>
+                <p>Boom Truck - Contact us for proper quotation at (0923) 086 8342</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="trucking/image2.webp" alt="Service 2" onclick="openModal(this)">
+            <div class="card-content">
+                <h3>Service 2</h3>
+                <p>Truck - Contact us for proper quotation at (0923) 086 8342</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="trucking/image3.webp" alt="Service 3" onclick="openModal(this)">
+            <div class="card-content">
+                <h3>Service 3</h3>
+                <p>Truck - Contact us for proper quotation at (0923) 086 8342</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="trucking/image4.webp" alt="Service 4" onclick="openModal(this)">
+            <div class="card-content">
+                <h3>Service 4</h3>
+                <p>Boom Truck - Contact us for proper quotation at (0923) 086 8342</p>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+
+        function openModal(element) {
+            const modal = document.getElementById('myModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImage.src = element.src;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

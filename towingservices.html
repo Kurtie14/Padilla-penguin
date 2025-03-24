@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Towing Services</title>
+    <style>
+        body {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 36px;
+            color: #D69B42;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 200px;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-menu li {
+            text-align: left;
+        }
+        .dropdown-menu li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            padding: 10px;
+            color: #222;
+            display: block;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white; 
+            margin: 4px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .burger {
+                display: flex;
+            }
+            .search-container {
+                margin: 10px 0;
+            }
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #D69B42;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button:hover {
+            background-color: #b5832d;
+        }
+        .content-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .content-container h1 {
+            font-size: 36px;
+            color: #D69B42;
+            margin-bottom: 20px;
+        }
+        .content-container h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .content-container p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .content-container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .content-container ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .content-container .highlight {
+            font-weight: bold;
+            color: #D69B42;
+        }
+        .content-container .emergency {
+            font-size: 20px;
+            color: #D69B42;
+            margin-bottom: 20px;
+        }
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .service-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+            text-align: left;
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover; 
+            border-radius: 10px 10px 0 0;
+        }
+        .service-card h3 {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: #D69B42;
+            margin-top: 10px;
+        }
+        .service-card p {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .service-card {
+                width: calc(50% - 40px); 
+            }
+        }
+        @media (max-width: 480px) {
+            .service-card {
+                width: calc(100% - 40px); 
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 15% auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .towing-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .submit-button {
+            background-color: #D69B42;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .submit-button:hover {
+            background-color: #b5832d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
+            <span class="logo-text">Towing Services</span>
+        </div>
+        <nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="burger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
+                        <li><a href="towingservices.html">Towing Services</a></li>
+                        <li><a href="truckingservices.html">Trucking Services</a></li>
+                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Sales ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                        <li><a href="autoparts.html">Auto Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content-container">
+        <h1>Towing Services 24/7</h1>
+        <p class="emergency">Emergency Hotline: (0923) 086 8342</p>
+        <p>We are proud to inform you that we can handle any type of towing requirements, no matter how complex or complicated.</p>
+        
+        <form id="towingForm" class="towing-form">
+            <h2>Request Towing Service</h2>
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Contact Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup">Pick up point:</label>
+                <input type="text" id="pickup" name="pickup" required>
+            </div>
+            <div class="form-group">
+                <label for="dropoff">Drop off point:</label>
+                <input type="text" id="dropoff" name="dropoff" required>
+            </div>
+            <div class="form-group">
+                <label for="vehicleType">Vehicle Type:</label>
+                <select id="vehicleType" name="vehicleType" required>
+                    <option value="">Select vehicle type</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Additional Details:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-button">Request Towing</button>
+        </form>
+        
+        <p class="highlight">Provide the following details:</p>
+        <ul>
+            <li>Pick up point:</li>
+            <li>Drop off point:</li>
+            <li>Vehicle type:</li>
+        </ul>
+        <p>We are committed to provide fast, affordable, reliable towing and recovery services. We offer our services 24 hours a day, seven days a week. Whether it's an old rusted antique that you wanted to turn into a project car or roadside emergency assistance, Penguin Towing can assist you. We do everything we can to work with your schedule. Get your free quote today.</p>
+        <h2>Our Services</h2>
+        <ul>
+            <li>24-Hour Towing & Roadside Assistance</li>
+            <li>Light-Duty Towing</li>
+            <li>Flatbed Towing</li>
+            <li>Long-Distance Towing</li>
+        </ul>
+    </div>
+    <div class="services-container">
+        <div class="service-card">
+            <img src="towing images/image1.jpeg" alt="Towing Service 1">
+            <h3>Towing Service 1</h3>
+            <p>Contact:  (0923) 086 8342, Isuzu 14 Feet Tow Truck
+                Self loading Car carrier</p>
+        </div>
+        <div class="service-card">
+            <img src="towing images/image2.jpeg" alt="Towing Service 2">
+            <h3>Towing Service 2</h3>
+            <p>Contact:  (0923) 086 8342, Isuzu 14 Feet Tow Truck
+                Self loading Car carrier</p>
+        </div>
+        <div class="service-card">
+            <img src="towing images/image3.webp" alt="Towing Service 3">
+            <h3>Towing Service 3</h3>
+            <p>Contact:  (0923) 086 8342, Isuzu 14 Feet Tow Truck
+                Self loading Car carrier</p>
+        </div>
+        <div class="service-card">
+            <img src="towing images/image4.webp" alt="Towing Service 4">
+            <h3>Towing Service 4</h3>
+            <p>Contact:  (0923) 086 8342, Isuzu 14 Feet Tow Truck
+                Self loading Car carrier</p>
+        </div>
+        <div class="service-card">
+            <img src="towing images/image5.webp" alt="Towing Service 5">
+            <h3>Towing Service 5</h3>
+            <p>Contact:  (0923) 086 8342, Isuzu 14 Feet Tow Truck
+                Self loading Car carrier</p>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Modal Image">
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('myModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImage.src = src;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+        document.querySelectorAll('.service-card img').forEach(img => {
+            img.addEventListener('click', () => openModal(img.src));
+        });
+
+        document.getElementById('towingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                pickup: document.getElementById('pickup').value,
+                dropoff: document.getElementById('dropoff').value,
+                vehicleType: document.getElementById('vehicleType').value,
+                message: document.getElementById('message').value
+            };
+
+            // You can handle the form submission here
+            // For now, we'll just show an alert
+            alert('Thank you for your request! We will contact you shortly.\n\n' +
+                  'Details:\n' +
+                  `Name: ${formData.name}\n` +
+                  `Phone: ${formData.phone}\n` +
+                  `Pickup: ${formData.pickup}\n` +
+                  `Drop-off: ${formData.dropoff}\n` +
+                  `Vehicle Type: ${formData.vehicleType}\n` +
+                  `Message: ${formData.message}`);
+            
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

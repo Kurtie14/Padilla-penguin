@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heavy Equipment Rental</title>
+    <style>
+        body {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            font-family: "Source Sans Pro", Arial, sans-serif;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 36px;
+            color: #D69B42;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 200px;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-menu li {
+            text-align: left;
+        }
+        .dropdown-menu li a {
+            font-family: "Source Sans Pro", Arial, sans-serif;
+            padding: 10px;
+            color: #222;
+            display: block;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white; 
+            margin: 4px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .burger {
+                display: flex;
+            }
+            .search-container {
+                margin: 10px 0;
+            }
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #D69B42;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .search-button:hover {
+            background-color: #b5832d;
+        }
+        .container {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        .details {
+            width: 100%;
+            text-align: left;
+        }
+        .details h2 {
+            color: #222;
+            font-size: 28px; 
+            font-weight: 600; 
+            margin-bottom: 15px; 
+        }
+        .details p {
+            margin: 10px 0;
+            font-size: 18px; 
+            line-height: 1.6; 
+        }
+        .details ul {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+        }
+        .details ul li {
+            margin: 5px 0;
+            font-weight: 500; 
+        }
+        .image-container {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;  
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: #D69B42;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .submit-button:hover {
+            background-color: #b5832d;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 70%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
+            <span class="logo-text">Heavy Equipment Rental</span>
+        </div>
+        <nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="burger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
+                        <li><a href="towingservices.html">Towing Services</a></li>
+                        <li><a href="truckingservices.html">Trucking Services</a></li>
+                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Sales ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                        <li><a href="autoparts.html">Auto Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="details">
+            <h2>Heavy Equipment Rental</h2>
+            <div class="image-container">
+                <img src="heavy/image1.jpeg" alt="Heavy Equipment" onclick="openLightbox()">
+            </div>
+            <p>We offer heavy equipment rental.</p>
+            <p>Please fill out the form below for proper quotation:</p>
+            
+            <form id="rentalForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">Contact Number:</label>
+                    <input type="tel" id="contact" name="contact" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Project Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="scope">Scope of Work/Project:</label>
+                    <textarea id="scope" name="scope" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours">Required Hours:</label>
+                    <input type="number" id="hours" name="hours" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="equipment">Equipment Type Needed:</label>
+                    <select id="equipment" name="equipment" required>
+                        <option value="">Select Equipment</option>
+                        <option value="excavator">Excavator</option>
+                        <option value="bulldozer">Bulldozer</option>
+                        <option value="crane">Crane</option>
+                        <option value="loader">Loader</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit Request</button>
+            </form>
+        </div>
+    </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <img src="heavy/image1.jpeg" alt="Heavy Equipment">
+        </div>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Request Submitted Successfully!</h3>
+            <p>We will contact you shortly with a quotation.</p>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+
+        function openLightbox() {
+            document.getElementById('lightbox').style.display = 'block';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                contact: document.getElementById('contact').value,
+                location: document.getElementById('location').value,
+                scope: document.getElementById('scope').value,
+                hours: document.getElementById('hours').value,
+                equipment: document.getElementById('equipment').value
+            };
+            
+            // Here you would typically send the data to a server
+            console.log('Form submitted:', formData);
+            
+            // Show success modal
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'block';
+            
+            // Reset form
+            document.getElementById('rentalForm').reset();
+        }
+
+        // Modal close functionality
+        const modal = document.getElementById('successModal');
+        const closeModal = document.querySelector('.close-modal');
+        
+        closeModal.onclick = function() {
+            modal.style.display = 'none';
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
