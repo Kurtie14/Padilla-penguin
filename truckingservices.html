@@ -4,334 +4,343 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trucking Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #222;
-            color: white;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
         .logo-text {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            font-size: 36px;
-            font-weight: 400;
-            line-height: 36px;
             color: #D69B42;
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        nav ul li {
-            position: relative;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            top: 100%;
-            left: 0;
-        }
-        .dropdown-menu li {
-            text-align: left;
-        }
-        .dropdown-menu li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            padding: 10px;
-            color: #222;
-            display: block;
-        }
-        .dropdown-menu li a:hover {
-            background-color: #f4f4f4;
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            margin-left: 15px;
-        }
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white; 
-            margin: 4px;
-            transition: all 0.3s;
-        }
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            .burger {
-                display: flex;
-            }
-            .search-container {
-                margin: 10px 0;
-            }
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin: 0 15px;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .search-input {
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-button {
-            padding: 5px 10px;
-            font-size: 16px;
-            border: none;
+        .custom-btn {
             background-color: #D69B42;
             color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
         }
-        .search-button:hover {
+        .custom-btn:hover {
             background-color: #b5832d;
-        }
-        .trucking-container {
-            background-color: white;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            text-align: left;
-        }
-        .trucking-container h2 {
-            color: #D69B42;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .trucking-container p {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-        }
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: calc(50% - 10px);
-            text-align: left;
-            height: 400px; 
-        }
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover; 
-        }
-        .card-content {
-            padding: 15px;
-        }
-        .card-content h3 {
-            color: #D69B42;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .card-content p {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .modal-content {
-            margin: 15% auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-        .modal-content img {
-            width: 100%;
-            height: auto;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
             color: white;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
         }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
+        .service-card {
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            height: 200px;
+            object-fit: cover;
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
-            <span class="logo-text">Trucking Services</span>
-        </div>
-        <nav>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search...">
-                <button class="search-button">Search</button>
-            </div>
-            <div class="burger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Services ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
-                        <li><a href="towingservices.html">Towing Services</a></li>
-                        <li><a href="truckingservices.html">Trucking Services</a></li>
-                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
-                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+<body class="d-flex flex-column min-vh-100 bg-gray-100">
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="logo.png" alt="Penguin Asia Logo" class="me-2" width="40" height="40">
+                    <span class="logo-text fs-4">Trucking Services</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <form class="d-flex mx-auto">
+                        <input class="form-control me-2" type="search" placeholder="Search...">
+                        <button class="btn custom-btn" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="bridalcarservices.html">Bridal Car Services</a></li>
+                                <li><a class="dropdown-item" href="towingservices.html">Towing Services</a></li>
+                                <li><a class="dropdown-item" href="truckingservices.html">Trucking Services</a></li>
+                                <li><a class="dropdown-item" href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                                <li><a class="dropdown-item" href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sales</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                                <li><a class="dropdown-item" href="autoparts.html">Auto Parts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Sales ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
-                        <li><a href="autoparts.html">Auto Parts</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    <div class="trucking-container">
-        <h2>Trucking Services</h2>
-        <p>Contact us for proper quotation at (0923) 086 8342</p>
-        <p>We offer different trucking services.</p>
+
+    <section class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-[#D69B42] fw-bold">Professional Trucking Services</h1>
+            <p class="lead text-muted">Reliable and efficient trucking solutions for all your transportation needs. Contact us for proper quotation at (0923) 086 8342</p>
+        </div>
+
+        <!-- Request Form -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4" style="color: #D69B42;">Request Trucking Service</h2>
+                        <form id="truckingForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Contact Number</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="pickup" class="form-label">Pick up point</label>
+                                    <input type="text" class="form-control" id="pickup" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="dropoff" class="form-label">Drop off point</label>
+                                    <input type="text" class="form-control" id="dropoff" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cargoType" class="form-label">Cargo Type</label>
+                                <select class="form-select" id="cargoType" required>
+                                    <option value="">Select cargo type</option>
+                                    <option value="general">General Cargo</option>
+                                    <option value="heavy">Heavy Equipment</option>
+                                    <option value="construction">Construction Materials</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Additional Details</label>
+                                <textarea class="form-control" id="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn w-100 custom-btn">Request Service</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: #D69B42;">Our Services</h2>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-box fa-3x mb-3" style="color: #D69B42;"></i>
+                                <h5 class="card-title">General Cargo</h5>
+                                <p class="card-text">Safe and secure transport for various cargo types</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-truck-loading fa-3x mb-3" style="color: #D69B42;"></i>
+                                <h5 class="card-title">Heavy Equipment</h5>
+                                <p class="card-text">Specialized transport for construction equipment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-hard-hat fa-3x mb-3" style="color: #D69B42;"></i>
+                                <h5 class="card-title">Construction Materials</h5>
+                                <p class="card-text">Reliable delivery of construction supplies</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-route fa-3x mb-3" style="color: #D69B42;"></i>
+                                <h5 class="card-title">Long-Distance Transport</h5>
+                                <p class="card-text">Efficient delivery across long distances</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fleet Section -->
+        <div class="row g-4">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: #D69B42;">Our Fleet</h2>
+            </div>
+            <!-- Trucking Service Cards -->
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="trucking/image1.png" class="card-img-top" alt="Boom Truck Service" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Boom Truck Service</h5>
+                        <p class="card-text">Professional boom truck service for your heavy lifting needs</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="trucking/image2.webp" class="card-img-top" alt="Truck Service" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Truck Service</h5>
+                        <p class="card-text">Reliable trucking service for your transportation needs</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="trucking/image3.webp" class="card-img-top" alt="Truck Service" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Truck Service</h5>
+                        <p class="card-text">Efficient trucking service for your cargo needs</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="trucking/image4.webp" class="card-img-top" alt="Boom Truck Service" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Boom Truck Service</h5>
+                        <p class="card-text">Professional boom truck service for heavy equipment transport</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4" style="color: #D69B42;">Contact Us</h2>
+                    <p class="lead mb-5">Get in touch with us for your trucking needs!</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn w-100 custom-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #D69B42;">Contact Information</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-phone me-2" style="color: #D69B42;"></i>
+                                    (0923) 086 8342
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-envelope me-2" style="color: #D69B42;"></i>
+                                    info@penguinasia.com
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-map-marker-alt me-2" style="color: #D69B42;"></i>
+                                    Tagaytay City, Philippines
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fab fa-facebook me-2" style="color: #D69B42;"></i>
+                                    <a href="https://www.facebook.com/tagaytaybridalcar/" class="text-decoration-none" style="color: #D69B42;">Facebook Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img id="modalImage" src="" class="img-fluid" alt="Trucking Service">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="cards-container">
-        <div class="card">
-            <img src="trucking/image1.png" alt="Service 1" onclick="openModal(this)">
-            <div class="card-content">
-                <h3>Service 1</h3>
-                <p>Boom Truck - Contact us for proper quotation at (0923) 086 8342</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="trucking/image2.webp" alt="Service 2" onclick="openModal(this)">
-            <div class="card-content">
-                <h3>Service 2</h3>
-                <p>Truck - Contact us for proper quotation at (0923) 086 8342</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="trucking/image3.webp" alt="Service 3" onclick="openModal(this)">
-            <div class="card-content">
-                <h3>Service 3</h3>
-                <p>Truck - Contact us for proper quotation at (0923) 086 8342</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="trucking/image4.webp" alt="Service 4" onclick="openModal(this)">
-            <div class="card-content">
-                <h3>Service 4</h3>
-                <p>Boom Truck - Contact us for proper quotation at (0923) 086 8342</p>
-            </div>
-        </div>
-    </div>
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="">
-        </div>
-    </div>
+
     <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            nav.classList.toggle('active');
-        }
-
         function openModal(element) {
-            const modal = document.getElementById('myModal');
-            const modalImage = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImage.src = element.src;
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            document.getElementById('modalImage').src = element.src;
+            modal.show();
         }
 
-        function closeModal() {
-            const modal = document.getElementById('myModal');
-            modal.style.display = "none";
-        }
+        document.getElementById('truckingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                pickup: document.getElementById('pickup').value,
+                dropoff: document.getElementById('dropoff').value,
+                cargoType: document.getElementById('cargoType').value,
+                message: document.getElementById('message').value
+            };
+
+            // Show success message
+            alert('Thank you for your request! We will contact you shortly.\n\n' +
+                  'Details:\n' +
+                  `Name: ${formData.name}\n` +
+                  `Phone: ${formData.phone}\n` +
+                  `Pickup: ${formData.pickup}\n` +
+                  `Drop-off: ${formData.dropoff}\n` +
+                  `Cargo Type: ${formData.cargoType}\n` +
+                  `Message: ${formData.message}`);
+            
+            // Reset the form
+            this.reset();
+        });
     </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

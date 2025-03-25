@@ -4,344 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Furniture Hotel & Residential</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #222;
-            color: white;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
         .logo-text {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            font-size: 36px;
-            font-weight: 400;
-            line-height: 36px;
             color: #D69B42;
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        nav ul li {
-            position: relative;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            top: 100%;
-            left: 0;
-        }
-        .dropdown-menu li {
-            text-align: left;
-        }
-        .dropdown-menu li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            padding: 10px;
-            color: #222;
-            display: block;
-        }
-        .dropdown-menu li a:hover {
-            background-color: #f4f4f4;
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            margin-left: 15px;
-        }
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 4px;
-            transition: all 0.3s;
-        }
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            .burger {
-                display: flex;
-            }
-            .search-container {
-                margin: 10px 0;
-            }
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin: 0 15px;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .search-input {
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-button {
-            padding: 5px 10px;
-            font-size: 16px;
-            border: none;
+        .custom-btn {
             background-color: #D69B42;
             color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
         }
-        .search-button:hover {
+        .custom-btn:hover {
             background-color: #b5832d;
+            color: white;
         }
-        .content-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: left;
-        }
-        .content-container h1 {
-            font-size: 36px;
-            color: #D69B42;
-            margin-bottom: 20px;
-        }
-        .content-container p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .content-container ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        .content-container ul li {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px 0;
-            max-width: 1200px;
-            margin: 20px auto;
-        }
-        .card {
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin: 10px;
-            flex: 1 1 calc(50% - 20px); 
-            text-align: center;
-            overflow: hidden;
-        }
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover; 
-        }
-        .card h3 {
-            font-size: 24px;
-            color: #D69B42;
-            margin: 10px 0;
-        }
-        .card p {
-            font-size: 16px;
-            color: #333;
-            padding: 0 10px 10px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
+        .service-card {
+            transition: transform 0.3s ease;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .service-card .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card .card-text:last-child {
+            margin-top: auto;
         }
         .modal-content {
-            margin: 15% auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
+            background-color: transparent;
+            border: none;
         }
-        .modal-content img {
-            width: 100%;
-            height: auto;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
+        .btn-close-white {
+            filter: brightness(0) invert(1);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
-            <span class="logo-text">Furniture Hotel & Residential</span>
-        </div>
-        <nav>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search...">
-                <button class="search-button">Search</button>
-            </div>
-            <div class="burger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Services ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
-                        <li><a href="towingservices.html">Towing Services</a></li>
-                        <li><a href="truckingservices.html">Trucking Services</a></li>
-                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
-                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+<body class="d-flex flex-column min-vh-100 bg-gray-100">
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="logo.png" alt="Penguin Asia Logo" class="me-2" width="40" height="40">
+                    <span class="logo-text fs-4">Furniture Hotel & Residential</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <form class="d-flex mx-auto">
+                        <input class="form-control me-2" type="search" placeholder="Search...">
+                        <button class="btn custom-btn" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="bridalcarservices.html">Bridal Car Services</a></li>
+                                <li><a class="dropdown-item" href="towingservices.html">Towing Services</a></li>
+                                <li><a class="dropdown-item" href="truckingservices.html">Trucking Services</a></li>
+                                <li><a class="dropdown-item" href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                                <li><a class="dropdown-item" href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sales</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                                <li><a class="dropdown-item" href="autoparts.html">Auto Parts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Sales ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
-                        <li><a href="autoparts.html">Auto Parts</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    <div class="content-container">
-        <h1>Welcome to Penguin Sales & Services Company</h1>
-        <p>Your trusted partner in premium furniture solutions. Whether you're furnishing a hotel, resort, or home, we’re here to provide stylish, durable, and functional pieces that elevate your space.</p>
-        <p>We offer a wide range of furniture for hotels and residences, from elegant lobby seating to cozy bedroom sets. Need something custom? We’ve got you covered with tailored designs to match your brand or personal style. Explore our project portfolio for inspiration, request bulk orders, or connect with our experts for personalized recommendations.</p>
-        <ul>
-            <li>Elegant lobby seating</li>
-            <li>Cozy bedroom sets</li>
-            <li>Custom tailored designs</li>
-            <li>Project portfolio for inspiration</li>
-            <li>Bulk order requests</li>
-            <li>Personalized recommendations</li>
-        </ul>
+
+    <section class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-[#D69B42] fw-bold">Welcome to Penguin Sales & Services Company</h1>
+            <p class="lead text-muted">Your trusted partner in premium furniture solutions. Whether you're furnishing a hotel, resort, or home, we're here to provide stylish, durable, and functional pieces that elevate your space.</p>
+        </div>
+
+        <!-- Furniture Gallery -->
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: #D69B42;">Our Furniture Collection</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="funiturre/image1.jpg" class="card-img-top" alt="Elegant Lobby Seating" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Elegant Lobby Seating</h5>
+                        <p class="card-text">Stylish and comfortable seating for your hotel lobby</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="funiturre/image2.webp" class="card-img-top" alt="Cozy Bedroom Sets" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Cozy Bedroom Sets</h5>
+                        <p class="card-text">Beautiful bedroom sets to make your guests feel at home</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card shadow-sm">
+                    <img src="funiturre/image3.webp" class="card-img-top" alt="Custom Tailored Designs" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Custom Tailored Designs</h5>
+                        <p class="card-text">Unique designs tailored to your brand or personal style</p>
+                        <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <div class="col-md-4">
+                    <div class="card service-card shadow-sm">
+                        <img src="funiturre/image4.jpg" class="card-img-top" alt="Project Portfolio" onclick="openModal(this)">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #D69B42;">Project Portfolio</h5>
+                            <p class="card-text">Explore our portfolio for inspiration and ideas</p>
+                            <p class="card-text"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Request Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4" style="color: #D69B42;">Request Furniture Quote</h2>
+                        <form id="furnitureForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact" class="form-label">Contact Number</label>
+                                    <input type="tel" class="form-control" id="contact" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="location" class="form-label">Project Location</label>
+                                    <input type="text" class="form-control" id="location" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="type" class="form-label">Project Type</label>
+                                    <select class="form-select" id="type" required>
+                                        <option value="">Select Type</option>
+                                        <option value="hotel">Hotel</option>
+                                        <option value="residential">Residential</option>
+                                        <option value="resort">Resort</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="furniture" class="form-label">Furniture Category Needed</label>
+                                <select class="form-select" id="furniture" required>
+                                    <option value="">Select Category</option>
+                                    <option value="lobby">Lobby Furniture</option>
+                                    <option value="bedroom">Bedroom Sets</option>
+                                    <option value="custom">Custom Designs</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="scope" class="form-label">Project Details</label>
+                                <textarea class="form-control" id="scope" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn w-100 custom-btn">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4" style="color: #D69B42;">Contact Us</h2>
+                    <p class="lead mb-5">Get in touch with us for your furniture needs!</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn w-100 custom-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #D69B42;">Contact Information</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-phone me-2" style="color: #D69B42;"></i>
+                                    (0923) 086 8342
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-envelope me-2" style="color: #D69B42;"></i>
+                                    info@penguinasia.com
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-map-marker-alt me-2" style="color: #D69B42;"></i>
+                                    Tagaytay City, Philippines
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fab fa-facebook me-2" style="color: #D69B42;"></i>
+                                    <a href="https://www.facebook.com/tagaytaybridalcar/" class="text-decoration-none" style="color: #D69B42;">Facebook Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img id="modalImage" src="" class="img-fluid" alt="Furniture">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-container">
-        <div class="card">
-            <img src="funiturre/image1.jpg" alt="Furniture 1" onclick="openModal(this)">
-            <h3>Elegant Lobby Seating</h3>
-            <p>Stylish and comfortable seating for your hotel lobby.</p>
-        </div>
-        <div class="card">
-            <img src="funiturre/image2.webp" alt="Furniture 2" onclick="openModal(this)">
-            <h3>Cozy Bedroom Sets</h3>
-            <p>Beautiful bedroom sets to make your guests feel at home.</p>
-        </div>
-        <div class="card">
-            <img src="funiturre/image3.webp" alt="Furniture 3" onclick="openModal(this)">
-            <h3>Custom Tailored Designs</h3>
-            <p>Unique designs tailored to your brand or personal style.</p>
-        </div>
-        <div class="card">
-            <img src="funiturre/image4.jpg" alt="Furniture 4" onclick="openModal(this)">
-            <h3>Project Portfolio</h3>
-            <p>Explore our portfolio for inspiration and ideas.</p>
-        </div>
-    </div>
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="">
-        </div>
-    </div>
+
     <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            nav.classList.toggle('active');
-        }
-
         function openModal(element) {
-            const modal = document.getElementById('myModal');
-            const modalImage = document.getElementById('modalImage');
-            modal.style.display = "block";
-            modalImage.src = element.src;
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            document.getElementById('modalImage').src = element.src;
+            modal.show();
         }
 
-        function closeModal() {
-            const modal = document.getElementById('myModal');
-            modal.style.display = "none";
-        }
+        document.getElementById('furnitureForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                contact: document.getElementById('contact').value,
+                location: document.getElementById('location').value,
+                type: document.getElementById('type').value,
+                furniture: document.getElementById('furniture').value,
+                scope: document.getElementById('scope').value
+            };
+
+            // Show success message
+            alert('Thank you for your request! We will contact you shortly.\n\n' +
+                  'Details:\n' +
+                  `Name: ${formData.name}\n` +
+                  `Contact: ${formData.contact}\n` +
+                  `Location: ${formData.location}\n` +
+                  `Project Type: ${formData.type}\n` +
+                  `Furniture Category: ${formData.furniture}\n` +
+                  `Project Details: ${formData.scope}`);
+            
+            // Reset the form
+            this.reset();
+        });
     </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

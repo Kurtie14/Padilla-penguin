@@ -4,470 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penguin Sales & Services Company</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #222;
-            color: white;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-        .logo-text {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            font-size: 36px;
-            font-weight: 400;
-            line-height: 36px;
-            color: #D69B42;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        nav ul li {
-            position: relative;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            top: 100%;
-            left: 0;
-        }
-        .dropdown-menu li {
-            text-align: left;
-        }
-        .dropdown-menu li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            padding: 10px;
-            color: #222;
-            display: block;
-        }
-        .dropdown-menu li a:hover {
-            background-color: #f4f4f4;
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 40px 20px;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            margin-top: auto;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .footer-section h3 {
-            color: #D69B42;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-        .footer-section p {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-section i {
-            color: #D69B42;
-            width: 20px;
-        }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .social-links a {
-            color: white;
-            font-size: 1.5em;
-            transition: color 0.3s;
-        }
-        .social-links a:hover {
-            color: #D69B42;
-        }
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .footer-section p {
-                justify-content: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
-            nav {
-                flex-direction: row;
-                justify-content: flex-end;
-                width: auto;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: #222;
-                z-index: 1000;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav ul li {
-                width: 100%;
-                margin: 0;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            nav ul li a {
-                padding: 15px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .dropdown-menu {
-                position: static;
-                width: 100%;
-                display: none;
-                background-color: #333;
-            }
-            .dropdown-menu.active {
-                display: block;
-            }
-            .dropdown-menu li a {
-                padding-left: 30px;
-                color: white;
-            }
-            .burger {
-                display: flex;
-                margin-right: 15px;
-                position: relative;
-            }
-            .search-container {
-                display: none;
-            }
-            .burger.active div:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-            .burger.active div:nth-child(2) {
-                opacity: 0;
-            }
-            .burger.active div:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-            .logo-text {
-                font-size: 20px;
-                line-height: 20px;
-            }
-            .logo-img {
-                width: 30px;
-                height: 30px;
-            }
-        }
         .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100vh;
+            min-height: 100vh;
             background: url('https://assets.newatlas.com/dims4/default/fe42011/2147483647/strip/true/crop/4500x3000+0+0/resize/1200x800!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Ftallest-skyscrapers-demolished-10.jpg') no-repeat center center/cover;
         }
-        .hero h1 {
-            font-size: 4em;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .hero p {
-            font-size: 2em;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
-        .explore-btn {
-            padding: 20px 40px;
-            font-size: 1.5em;
+        .logo-text {
             color: #D69B42;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: background 0.3s, border 0.3s;
         }
-        .explore-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            margin-left: 15px;
-            z-index: 1001;
-        }
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white; 
-            margin: 4px;
-            transition: all 0.3s;
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin: 0 15px;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .search-input {
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-button {
-            padding: 5px 10px;
-            font-size: 16px;
-            border: none;
-            background-color: #D69B42;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-        .search-button:hover {
-            background-color: #b5832d;
-        }
-        .info-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.3);
         }
         .info-box {
             background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            flex: 1;
-            text-align: center;
-            color: white;
             backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        html {
-            scroll-behavior: smooth;
+        .custom-btn {
+            background-color: #D69B42;
+            color: white;
+        }
+        .custom-btn:hover {
+            background-color: #b5832d;
+            color: white;
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
-            <span class="logo-text">Penguin Sales & Services Company</span>
-        </div>
-        <nav>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search...">
-                <button class="search-button">Search</button>
-            </div>
-            <div class="burger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Services ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
-                        <li><a href="towingservices.html">Towing Services</a></li>
-                        <li><a href="truckingservices.html">Trucking Services</a></li>
-                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
-                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+<body class="d-flex flex-column min-vh-100">
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="logo.png" alt="Penguin Asia Logo" class="me-2" width="40" height="40">
+                    <span class="logo-text fs-4">Penguin Sales & Services Company</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <form class="d-flex mx-auto">
+                        <input class="form-control me-2" type="search" placeholder="Search...">
+                        <button class="btn custom-btn" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="bridalcarservices.html">Bridal Car Services</a></li>
+                                <li><a class="dropdown-item" href="towingservices.html">Towing Services</a></li>
+                                <li><a class="dropdown-item" href="truckingservices.html">Trucking Services</a></li>
+                                <li><a class="dropdown-item" href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                                <li><a class="dropdown-item" href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sales</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                                <li><a class="dropdown-item" href="autoparts.html">Auto Parts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Sales ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
-                        <li><a href="autoparts.html">Auto Parts</a></li>
-                    </ul>
-                </li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    <section class="hero">
-        <h1>Innovative Digital Solutions</h1>
-        <p>We Make It Happen</p>
-        <button class="explore-btn">Explore More</button>
-        <div class="info-container">
-            <div class="info-box">Top Service</div>
-            <div class="info-box">Easy Transaction</div>
-            <div class="info-box">We Make it Happen</div>
+
+    <section class="hero d-flex align-items-center justify-content-center text-white">
+        <div class="hero-overlay position-absolute w-100 h-100"></div>
+        <div class="container position-relative text-center">
+            <h1 class="display-2 mb-4">Innovative Digital Solutions</h1>
+            <p class="display-6 mb-4">We Make It Happen</p>
+            <button class="btn btn-lg custom-btn px-5 py-3">Explore More</button>
+            
+            <div class="row mt-5">
+                <div class="col-md-4 mb-3">
+                    <div class="info-box p-4 rounded text-white">Top Service</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="info-box p-4 rounded text-white">Easy Transaction</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="info-box p-4 rounded text-white">We Make it Happen</div>
+                </div>
+            </div>
         </div>
     </section>
-    <section id="contact" style="padding: 50px 20px; background-color: #fff;">
-        <h2 style="color: #222; margin-bottom: 30px;">Contact Us</h2>
-        <div style="max-width: 600px; margin: 0 auto;">
-            <form style="display: flex; flex-direction: column; gap: 20px;">
-                <div style="display: flex; gap: 20px;">
-                    <div style="flex: 1;">
-                        <label for="name" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-                            <i class="fas fa-user" style="color: #D69B42;"></i>
-                            Name
-                        </label>
-                        <input type="text" id="name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label for="email" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-                            <i class="fas fa-envelope" style="color: #D69B42;"></i>
-                            Email
-                        </label>
-                        <input type="email" id="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                    </div>
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">
+                                    <i class="fas fa-user text-warning me-2"></i>Name
+                                </label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">
+                                    <i class="fas fa-envelope text-warning me-2"></i>Email
+                                </label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-tag text-warning me-2"></i>Subject
+                            </label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-comment text-warning me-2"></i>Message
+                            </label>
+                            <textarea class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn custom-btn w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
                 </div>
-                <div>
-                    <label for="subject" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-                        <i class="fas fa-tag" style="color: #D69B42;"></i>
-                        Subject
-                    </label>
-                    <input type="text" id="subject" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                </div>
-                <div>
-                    <label for="message" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-                        <i class="fas fa-comment" style="color: #D69B42;"></i>
-                        Message
-                    </label>
-                    <textarea id="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-                </div>
-                <button type="submit" style="background-color: #D69B42; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
-                    <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-            </form>
+            </div>
         </div>
     </section>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact Information</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Business Street, Manila, Philippines</p>
-                <p><i class="fas fa-phone"></i> +63 123 456 7890</p>
-                <p><i class="fas fa-envelope"></i> info@penguinasia.com</p>
-            </div>
-            <div class="footer-section">
-                <h3>Business Hours</h3>
-                <p><i class="far fa-clock"></i> Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p><i class="far fa-clock"></i> Saturday: 9:00 AM - 4:00 PM</p>
-                <p><i class="far fa-clock"></i> Sunday: Closed</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="text-warning mb-4">Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt text-warning me-2"></i>123 Business Street, Tagaytay City, Philippiness</p>
+                    <p><i class="fas fa-phone text-warning me-2"></i>+63 123 456 7890</p>
+                    <p><i class="fas fa-envelope text-warning me-2"></i>info@penguinasia.com</p>
                 </div>
-                <p style="margin-top: 20px;">&copy; 2025 Penguin Sales & Services Company</p>
+                <div class="col-md-4 mb-4">
+                    <h3 class="text-warning mb-4">Business Hours</h3>
+                    <p><i class="far fa-clock text-warning me-2"></i>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p><i class="far fa-clock text-warning me-2"></i>Saturday: 9:00 AM - 4:00 PM</p>
+                    <p><i class="far fa-clock text-warning me-2"></i>Sunday: Closed</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3 class="text-warning mb-4">Follow Us</h3>
+                    <div class="mb-4">
+                        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <p>&copy; 2025 Penguin Sales & Services Company</p>
+                </div>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
-    <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            const burger = document.querySelector('.burger');
-            nav.classList.toggle('active');
-            burger.classList.toggle('active');
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdowns = document.querySelectorAll('.dropdown > a');
-            
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const menu = this.nextElementSibling;
-                    
-                    dropdowns.forEach(otherDropdown => {
-                        if (otherDropdown !== dropdown) {
-                            otherDropdown.nextElementSibling.classList.remove('active');
-                        }
-                    });
-                    
-                    menu.classList.toggle('active');
-                });
-            });
-
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('nav ul');
-            const burger = document.querySelector('.burger');
-            const isClickInsideNav = nav.contains(event.target);
-            const isClickInsideBurger = burger.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickInsideBurger && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                burger.classList.remove('active');
-                    
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.classList.remove('active');
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

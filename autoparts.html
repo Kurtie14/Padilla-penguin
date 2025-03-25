@@ -4,332 +4,398 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Parts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #222;
-            color: white;
-            font-family: "Source Sans Pro", Arial, sans-serif;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
         .logo-text {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            font-size: 36px;
-            font-weight: 400;
-            line-height: 36px;
             color: #D69B42;
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        nav ul li {
-            position: relative;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            top: 100%;
-            left: 0;
-        }
-        .dropdown-menu li {
-            text-align: left;
-        }
-        .dropdown-menu li a {
-            font-family: "Source Sans Pro", Arial, sans-serif;
-            padding: 10px;
-            color: #222;
-            display: block;
-        }
-        .dropdown-menu li a:hover {
-            background-color: #f4f4f4;
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            margin-left: 15px;
-        }
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white; /* Change to white */
-            margin: 4px;
-            transition: all 0.3s;
-        }
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            .burger {
-                display: flex;
-            }
-            .search-container {
-                margin: 10px 0;
-            }
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-            margin: 0 15px;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .search-input {
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .search-button {
-            padding: 5px 10px;
-            font-size: 16px;
-            border: none;
+        .custom-btn {
             background-color: #D69B42;
             color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
         }
-        .search-button:hover {
+        .custom-btn:hover {
             background-color: #b5832d;
-        }
-        footer {
-            background-color: #222;
             color: white;
-            padding: 40px 20px;
+        }
+        .service-card {
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .service-card .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card .card-text:last-child {
             margin-top: auto;
         }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+        .modal-content {
+            background-color: transparent;
+            border: none;
         }
-        .footer-section h3 {
-            color: #D69B42;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-        .footer-section p {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-section i {
-            color: #D69B42;
-            width: 20px;
-        }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .social-links a {
-            color: white;
-            font-size: 1.5em;
-            transition: color 0.3s;
-        }
-        .social-links a:hover {
-            color: #D69B42;
-        }
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .footer-section p {
-                justify-content: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
+        .btn-close-white {
+            filter: brightness(0) invert(1);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Penguin Asia Logo" class="logo-img">
-            <span class="logo-text">Auto Parts</span>
-        </div>
-        <nav>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search...">
-                <button class="search-button">Search</button>
-            </div>
-            <div class="burger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Services ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="bridalcarservices.html">Bridal Car Services</a></li>
-                        <li><a href="towingservices.html">Towing Services</a></li>
-                        <li><a href="truckingservices.html">Trucking Services</a></li>
-                        <li><a href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
-                        <li><a href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+<body class="d-flex flex-column min-vh-100 bg-gray-100">
+    <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="logo.png" alt="Penguin Asia Logo" class="me-2" width="40" height="40">
+                    <span class="logo-text fs-4">Auto Parts</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <form class="d-flex mx-auto">
+                        <input class="form-control me-2" type="search" placeholder="Search...">
+                        <button class="btn custom-btn" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="bridalcarservices.html">Bridal Car Services</a></li>
+                                <li><a class="dropdown-item" href="towingservices.html">Towing Services</a></li>
+                                <li><a class="dropdown-item" href="truckingservices.html">Trucking Services</a></li>
+                                <li><a class="dropdown-item" href="heavyequipmentrental.html">Heavy Equipment Rental</a></li>
+                                <li><a class="dropdown-item" href="gencon&mainser.html">GenCon & Maintenance Services</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Sales</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
+                                <li><a class="dropdown-item" href="autoparts.html">Auto Parts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Sales ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="furhot&resarea.html">Furniture for Hotel & Residential Areas</a></li>
-                        <li><a href="autoparts.html">Auto Parts</a></li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
-        <h1 style="color: #222; margin-bottom: 15px;">Auto Parts</h1>
-        <p style="color: #666; max-width: 800px; margin: 0 auto 30px; line-height: 1.6;">Discover our comprehensive selection of high-quality auto parts. From essential engine components to advanced electrical systems, we offer reliable parts that meet or exceed OEM specifications. Our inventory includes everything you need to keep your vehicle running at peak performance.</p>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
-            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
-                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837" alt="Engine Parts" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
-                <h2 style="color: #D69B42; margin-bottom: 15px;">Engine Parts</h2>
-                <ul style="list-style: none; padding: 0; text-align: left;">
-                    <li style="margin: 10px 0;">• Pistons and Rings</li>
-                    <li style="margin: 10px 0;">• Cylinder Heads</li>
-                    <li style="margin: 10px 0;">• Crankshafts</li>
-                    <li style="margin: 10px 0;">• Camshafts</li>
-                    <li style="margin: 10px 0;">• Timing Belts</li>
-                </ul>
-            </div>
-
-            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
-                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Brake System" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
-                <h2 style="color: #D69B42; margin-bottom: 15px;">Brake System</h2>
-                <ul style="list-style: none; padding: 0; text-align: left;">
-                    <li style="margin: 10px 0;">• Brake Pads</li>
-                    <li style="margin: 10px 0;">• Rotors</li>
-                    <li style="margin: 10px 0;">• Calipers</li>
-                    <li style="margin: 10px 0;">• Brake Lines</li>
-                    <li style="margin: 10px 0;">• Master Cylinders</li>
-                </ul>
-            </div>
-
-            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
-                <img src="https://images.unsplash.com/photo-1519752594763-2633d8d4ea29?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Suspension" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
-                <h2 style="color: #D69B42; margin-bottom: 15px;">Suspension</h2>
-                <ul style="list-style: none; padding: 0; text-align: left;">
-                    <li style="margin: 10px 0;">• Shock Absorbers</li>
-                    <li style="margin: 10px 0;">• Struts</li>
-                    <li style="margin: 10px 0;">• Control Arms</li>
-                    <li style="margin: 10px 0;">• Ball Joints</li>
-                    <li style="margin: 10px 0;">• Bushings</li>
-                </ul>
-            </div>
-
-            <div style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
-                <img src="https://images.unsplash.com/photo-1606577924006-27d39b132ae2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Electrical" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
-                <h2 style="color: #D69B42; margin-bottom: 15px;">Electrical</h2>
-                <ul style="list-style: none; padding: 0; text-align: left;">
-                    <li style="margin: 10px 0;">• Alternators</li>
-                    <li style="margin: 10px 0;">• Starters</li>
-                    <li style="margin: 10px 0;">• Batteries</li>
-                    <li style="margin: 10px 0;">• Ignition Coils</li>
-                    <li style="margin: 10px 0;">• Sensors</li>
-                </ul>
-            </div>
+    <section class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-[#D69B42] fw-bold">Auto Parts</h1>
+            <p class="lead text-muted">Discover our comprehensive selection of high-quality auto parts. From essential engine components to advanced electrical systems, we offer reliable parts that meet or exceed OEM specifications.</p>
         </div>
 
-        <div style="margin-top: 40px; text-align: center;">
-            <p style="color: #666; margin-bottom: 20px;">Need specific auto parts? Contact us for availability and pricing.</p>
-            <button style="background-color: #D69B42; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">
-                Contact Sales
-            </button>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact Information</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Auto Parts Street, Manila, Philippines</p>
-                <p><i class="fas fa-phone"></i> +63 123 456 7890</p>
-                <p><i class="fas fa-envelope"></i> info@penguinasia.com</p>
+        <!-- Auto Parts Categories -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card service-card shadow-sm">
+                    <img src="https://media.istockphoto.com/id/1139697726/photo/car-engine-disassembled-many-parts.jpg?s=612x612&w=0&k=20&c=b7oSQGuoFPLKKBLHv2KReuxUYyii5sVjIyhTCZ5zg0s=" class="card-img-top" alt="Engine Parts" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Engine Parts</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Pistons and Rings</span>
+                                <span class="text-success">₱4,500 - ₱12,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Cylinder Heads</span>
+                                <span class="text-success">₱15,000 - ₱45,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Crankshafts</span>
+                                <span class="text-success">₱25,000 - ₱75,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Camshafts</span>
+                                <span class="text-success">₱8,000 - ₱20,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Timing Belts</span>
+                                <span class="text-success">₱1,500 - ₱5,000</span>
+                            </div>
+                        </div>
+                        <p class="card-text mt-3"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Business Hours</h3>
-                <p><i class="far fa-clock"></i> Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p><i class="far fa-clock"></i> Saturday: 9:00 AM - 4:00 PM</p>
-                <p><i class="far fa-clock"></i> Sunday: Closed</p>
+            <div class="col-md-6">
+                <div class="card service-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3" class="card-img-top" alt="Brake System" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Brake System</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Brake Pads</span>
+                                <span class="text-success">₱1,200 - ₱4,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Rotors</span>
+                                <span class="text-success">₱2,500 - ₱8,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Calipers</span>
+                                <span class="text-success">₱3,500 - ₱12,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Brake Lines</span>
+                                <span class="text-success">₱800 - ₱2,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Master Cylinders</span>
+                                <span class="text-success">₱2,000 - ₱6,500</span>
+                            </div>
+                        </div>
+                        <p class="card-text mt-3"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+            <div class="col-md-6">
+                <div class="card service-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1519752594763-2633d8d4ea29" class="card-img-top" alt="Suspension" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Suspension</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Shock Absorbers</span>
+                                <span class="text-success">₱2,500 - ₱8,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Struts</span>
+                                <span class="text-success">₱3,500 - ₱12,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Control Arms</span>
+                                <span class="text-success">₱2,000 - ₱7,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Ball Joints</span>
+                                <span class="text-success">₱800 - ₱3,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Bushings</span>
+                                <span class="text-success">₱300 - ₱1,500</span>
+                            </div>
+                        </div>
+                        <p class="card-text mt-3"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card service-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1606577924006-27d39b132ae2" class="card-img-top" alt="Electrical" onclick="openModal(this)">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #D69B42;">Electrical</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Alternators</span>
+                                <span class="text-success">₱4,500 - ₱15,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Starters</span>
+                                <span class="text-success">₱3,500 - ₱12,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Batteries</span>
+                                <span class="text-success">₱3,000 - ₱12,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Ignition Coils</span>
+                                <span class="text-success">₱1,200 - ₱4,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Sensors</span>
+                                <span class="text-success">₱800 - ₱3,500</span>
+                            </div>
+                        </div>
+                        <p class="card-text mt-3"><small class="text-muted">Contact: (0923) 086 8342</small></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Request Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4" style="color: #D69B42;">Request Auto Parts Quote</h2>
+                        <form id="partsForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact" class="form-label">Contact Number</label>
+                                    <input type="tel" class="form-control" id="contact" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="vehicle" class="form-label">Vehicle Make & Model</label>
+                                    <input type="text" class="form-control" id="vehicle" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="year" class="form-label">Year</label>
+                                    <input type="number" class="form-control" id="year" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Parts Category</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="engine">Engine Parts</option>
+                                    <option value="brake">Brake System</option>
+                                    <option value="suspension">Suspension</option>
+                                    <option value="electrical">Electrical</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="details" class="form-label">Specific Parts Needed</label>
+                                <textarea class="form-control" id="details" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn w-100 custom-btn">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4" style="color: #D69B42;">Contact Us</h2>
+                    <p class="lead mb-5">Get in touch with us for your auto parts needs!</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn w-100 custom-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #D69B42;">Contact Information</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-phone me-2" style="color: #D69B42;"></i>
+                                    (0923) 086 8342
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-envelope me-2" style="color: #D69B42;"></i>
+                                    info@penguinasia.com
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-map-marker-alt me-2" style="color: #D69B42;"></i>
+                                    Tagaytay City, Philippines
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fab fa-facebook me-2" style="color: #D69B42;"></i>
+                                    <a href="https://www.facebook.com/tagaytaybridalcar/" class="text-decoration-none" style="color: #D69B42;">Facebook Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img id="modalImage" src="" class="img-fluid" alt="Auto Parts">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            nav.classList.toggle('active');
+        function openModal(element) {
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            document.getElementById('modalImage').src = element.src;
+            modal.show();
         }
+
+        document.getElementById('partsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                contact: document.getElementById('contact').value,
+                vehicle: document.getElementById('vehicle').value,
+                year: document.getElementById('year').value,
+                category: document.getElementById('category').value,
+                details: document.getElementById('details').value
+            };
+
+            // Show success message
+            alert('Thank you for your request! We will contact you shortly.\n\n' +
+                  'Details:\n' +
+                  `Name: ${formData.name}\n` +
+                  `Contact: ${formData.contact}\n` +
+                  `Vehicle: ${formData.vehicle}\n` +
+                  `Year: ${formData.year}\n` +
+                  `Category: ${formData.category}\n` +
+                  `Details: ${formData.details}`);
+            
+            // Reset the form
+            this.reset();
+        });
     </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
